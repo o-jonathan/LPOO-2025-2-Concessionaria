@@ -10,7 +10,6 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.Veiculo;
 import model.dao.VeiculoDAO;
-import model.dao.VeiculoDAO_bkp;
 
 /**
  *

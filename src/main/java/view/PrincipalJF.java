@@ -26,16 +26,20 @@ public class PrincipalJF extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuItem1 = new javax.swing.JMenuItem();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
+        miCadastro = new javax.swing.JMenu();
         miVendedor = new javax.swing.JMenuItem();
         miCliente = new javax.swing.JMenuItem();
         miVeiculo = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
+        miVenda = new javax.swing.JMenu();
+        miRVenda = new javax.swing.JMenuItem();
+
+        jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jMenu1.setText("Cadastro");
+        miCadastro.setText("Cadastro");
 
         miVendedor.setText("Vendedor");
         miVendedor.addActionListener(new java.awt.event.ActionListener() {
@@ -43,7 +47,7 @@ public class PrincipalJF extends javax.swing.JFrame {
                 miVendedorActionPerformed(evt);
             }
         });
-        jMenu1.add(miVendedor);
+        miCadastro.add(miVendedor);
 
         miCliente.setText("Cliente");
         miCliente.addActionListener(new java.awt.event.ActionListener() {
@@ -51,7 +55,7 @@ public class PrincipalJF extends javax.swing.JFrame {
                 miClienteActionPerformed(evt);
             }
         });
-        jMenu1.add(miCliente);
+        miCadastro.add(miCliente);
 
         miVeiculo.setText("Veículo");
         miVeiculo.addActionListener(new java.awt.event.ActionListener() {
@@ -59,12 +63,26 @@ public class PrincipalJF extends javax.swing.JFrame {
                 miVeiculoActionPerformed(evt);
             }
         });
-        jMenu1.add(miVeiculo);
+        miCadastro.add(miVeiculo);
 
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(miCadastro);
 
-        jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
+        miVenda.setText("Venda");
+        miVenda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miVendaActionPerformed(evt);
+            }
+        });
+
+        miRVenda.setText("Realizar Venda");
+        miRVenda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miRVendaActionPerformed(evt);
+            }
+        });
+        miVenda.add(miRVenda);
+
+        jMenuBar1.add(miVenda);
 
         setJMenuBar(jMenuBar1);
 
@@ -96,6 +114,15 @@ public class PrincipalJF extends javax.swing.JFrame {
         ListaVeiculoJF telaVeiculo = new ListaVeiculoJF();
         telaVeiculo.setVisible(true);
     }//GEN-LAST:event_miVeiculoActionPerformed
+
+    private void miVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miVendaActionPerformed
+        
+    }//GEN-LAST:event_miVendaActionPerformed
+
+    private void miRVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miRVendaActionPerformed
+        ListaVendasJF telaVenda = new ListaVendasJF();
+        telaVenda.setVisible(true);
+    }//GEN-LAST:event_miRVendaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -133,11 +160,13 @@ public class PrincipalJF extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenu miCadastro;
     private javax.swing.JMenuItem miCliente;
+    private javax.swing.JMenuItem miRVenda;
     private javax.swing.JMenuItem miVeiculo;
+    private javax.swing.JMenu miVenda;
     private javax.swing.JMenuItem miVendedor;
     // End of variables declaration//GEN-END:variables
 }

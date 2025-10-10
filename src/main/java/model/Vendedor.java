@@ -4,11 +4,7 @@
  */
 package model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  *
@@ -22,7 +18,10 @@ public class Vendedor extends Pessoa{
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     
+    @Column(name = "vend_salario", columnDefinition = "numeric(12,2)")
     private double salario;
+    
+    @Column(name = "vend_comissao", columnDefinition = "numeric(5,2)")
     private double comissao;
 
     public double getSalario() {

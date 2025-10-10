@@ -186,6 +186,13 @@ public class ListaVendedorJF extends javax.swing.JFrame {
             telaEdicao.setVendedor(obj_vendedor);
             
             telaEdicao.setVisible(true);
+            
+            try {
+                dao.persist(telaEdicao.getVendedor());
+            } catch (Exception ex) {
+                System.err.println("Erro ao editar o vendedor "+obj_vendedor.toString()+" \n Erro: "+ex);
+            }
+            
             loadTabelaVendedores();
             
             
