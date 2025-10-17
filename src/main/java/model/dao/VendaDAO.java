@@ -11,11 +11,11 @@ import model.Venda;
 
 /**
  *
- * @author 20241PF.CC0020
+ * @author vanessalagomachado
  */
-public class VendaDAO extends PersistenciaJPA {
-    public List<Venda> listaVendas() {
-        EntityManager em = getEntityManager();
+public class VendaDAO extends PersistenciaJPA{
+    public List<Venda> listaVendas(){
+    EntityManager em = getEntityManager();
         try {
             TypedQuery<Venda> query
                     = em.createQuery("SELECT v FROM Venda v", Venda.class);

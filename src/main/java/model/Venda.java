@@ -6,14 +6,7 @@ package model;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  *
@@ -22,36 +15,42 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "vendas")
 public class Venda implements Serializable{
-    
+
     @Id
-    @Column(name = "vendas_id")
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long id;
+    @Column(name = "venda_id")
+    private int id;
     
+    @Column(name = "venda_data_hora", nullable = false)
     private LocalDateTime dataVenda;
+    
+    @Column(name = "venda_valor", columnDefinition = "numeric(12,2)")
     private double valorVenda;
+    
+    @Enumerated(EnumType.STRING)
+    @Column(name = "venda_contrato")
     private FormaContrato formaContrato;
+    
+    @Enumerated(EnumType.STRING)
+    @Column(name = "venda_pgto")
     private FormaPgto formaPgto;
     
-    @OneToMany
+    @ManyToOne
+    @JoinColumn(name = "venda_cliente")
     private Cliente cliente;
-    
-    @OneToMany
+
+    @ManyToOne
+    @JoinColumn(name = "venda_vendedor")
     private Vendedor vendedor;
-    
-    @OneToOne
+
+    @ManyToOne
+    @JoinColumn(name = "venda_veiculo")
     private Veiculo veiculo;
+    
+    
 
     public LocalDateTime getDataVenda() {
         return dataVenda;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public void setDataVenda(LocalDateTime dataVenda) {
@@ -109,6 +108,14 @@ public class Venda implements Serializable{
     @Override
     public String toString() {
         return "Venda: { veiculo"+veiculo.getPlaca()+", cliente: "+cliente.getNome()+", vendedor: "+vendedor.getNome()+"}";
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
     
     

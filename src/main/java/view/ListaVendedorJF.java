@@ -146,7 +146,7 @@ public class ListaVendedorJF extends javax.swing.JFrame {
             //JOptionPane.showMessageDialog(rootPane, novoVendedor);
             dao.persist(novoVendedor);
         } catch (Exception ex) {
-            System.err.println("Erro ao castrar o vendedor "+novoVendedor.toString()+" \n Erro: "+ex);
+            System.err.println("Erro ao cadastrar Vendedor: "+ex);
         }
         loadTabelaVendedores();
     }//GEN-LAST:event_btnNovoActionPerformed
@@ -168,7 +168,7 @@ public class ListaVendedorJF extends javax.swing.JFrame {
                 try {
                     dao.remover(obj_vendedor);
                 } catch (Exception ex) {
-                    System.err.println("Erro ao remover o vendedor "+obj_vendedor.toString()+" \n Erro: "+ex);
+                    System.err.println("Erro ao remover vendedor: "+ex);
                 }
                 JOptionPane.showMessageDialog(rootPane, "Vendedor removido com sucesso... ");
                 loadTabelaVendedores();
@@ -190,7 +190,7 @@ public class ListaVendedorJF extends javax.swing.JFrame {
             try {
                 dao.persist(telaEdicao.getVendedor());
             } catch (Exception ex) {
-                System.err.println("Erro ao editar o vendedor "+obj_vendedor.toString()+" \n Erro: "+ex);
+                System.out.println("Erro ao editar Vendedor: "+ex);
             }
             
             loadTabelaVendedores();
