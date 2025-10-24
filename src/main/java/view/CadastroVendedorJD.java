@@ -172,6 +172,7 @@ public class CadastroVendedorJD extends javax.swing.JDialog {
             double comissao = Double.parseDouble(txtComissao.getText());
             if (comissao < 0 || comissao >= 100) {
                 JOptionPane.showMessageDialog(rootPane, "Valor de comissão inválido! Informe somente valores entre [0-100]%");
+                return;
             }
             else {
                 this.vendedor.setComissao(comissao);

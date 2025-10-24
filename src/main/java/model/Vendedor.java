@@ -4,6 +4,7 @@
  */
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.*;
@@ -26,7 +27,9 @@ public class Vendedor extends Pessoa{
     @Column(name = "vend_comissao", columnDefinition = "numeric(5,2)")
     private double comissao;
     
-
+    public Vendedor() {
+        vendas = new ArrayList<>();
+    }
 
     public double getSalario() {
         return salario;

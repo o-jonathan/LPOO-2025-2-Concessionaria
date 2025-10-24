@@ -5,6 +5,7 @@
 package model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.processing.Generated;
 import javax.persistence.*;
@@ -25,7 +26,10 @@ public class Cliente extends Pessoa implements Serializable{
     @OneToMany(mappedBy = "cliente")
     private List<Venda> vendas;
     
-
+    public Cliente() {
+        vendas = new ArrayList<>();
+    }
+    
     public Long getId() {
         return id;
     }

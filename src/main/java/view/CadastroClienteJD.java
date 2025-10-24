@@ -151,7 +151,9 @@ public class CadastroClienteJD extends javax.swing.JDialog {
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         
-
+        if (cliente == null) {
+            cliente = new Cliente();
+        }
         
         try{
             this.cliente.setNome(txtNome.getText());
@@ -163,8 +165,10 @@ public class CadastroClienteJD extends javax.swing.JDialog {
             
             this.dispose();
         } catch (DateTimeParseException e1){
+            cliente = null;
             JOptionPane.showMessageDialog(rootPane, "Data inválida!! Informe data no formato dd-mm-yyyy\n"+e1);
         }  catch (Exception e3){
+            cliente = null;
             JOptionPane.showMessageDialog(rootPane, "Ocorreu um erro inesperado: \n"+e3);
         } 
         

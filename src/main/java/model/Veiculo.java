@@ -5,6 +5,7 @@
 package model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
 
@@ -44,7 +45,10 @@ public class Veiculo implements Serializable {
     @Column(name = "vei_modelo")
     private Modelo modelo;
     
-
+    public Veiculo() {
+        vendas = new ArrayList<>();
+    }
+    
     public String getPlaca() {
         return placa;
     }

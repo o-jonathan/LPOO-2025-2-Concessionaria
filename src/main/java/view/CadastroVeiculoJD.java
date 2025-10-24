@@ -17,6 +17,7 @@ import model.Marca;
 import model.Modelo;
 import model.Veiculo;
 import model.Vendedor;
+import model.dao.Util;
 
 /**
  *
@@ -195,14 +196,33 @@ public class CadastroVeiculoJD extends javax.swing.JDialog {
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         
-
+        if (veiculo == null) {
+            veiculo = new Veiculo();
+        }
         
         try{
+            String placa = txtPlaca.getText().trim().replaceAll("-", "").toUpperCase();
+            int anoFabricacao = Integer.parseInt(txtAnoFabricacao.getText().trim());
+            
+            if (Util.validaAno(anoFabricacao)) {
+                veiculo.setAnoFabricacao(anoFabricacao);
+            }
+            else {
+                return;
+            }
+            
+            if (placa.length() != 7) {
+                JOptionPane.showMessageDialog(rootPane, "Placa inválida! Padrão: ABC1234");
+                return;
+            }
+            else {
+                veiculo.setPlaca(placa);
+            }
+            
             veiculo.setPlaca(txtPlaca.getText());
             veiculo.setCor(txtCor.getText());
             veiculo.setMarca((Marca)cmbMarca.getSelectedItem());
             veiculo.setModelo((Modelo)cmbModelo.getSelectedItem());
-            veiculo.setAnoFabricacao(Integer.parseInt(txtAnoFabricacao.getText().trim()));
             veiculo.setAnoModelo(Integer.parseInt(txtAnoModelo.getText().trim()));
             veiculo.setValor(Double.parseDouble(txtValor.getText().trim().replace(",", ".")));
             
