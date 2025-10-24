@@ -117,7 +117,7 @@ public class PrincipalJF extends javax.swing.JFrame {
     }//GEN-LAST:event_miVendaActionPerformed
 
     private void miTelaVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miTelaVendaActionPerformed
-        ListaVendas telaVendas = new ListaVendas();
+        ListaVendasJF telaVendas = new ListaVendasJF();
         telaVendas.setVisible(true);
     }//GEN-LAST:event_miTelaVendaActionPerformed
 

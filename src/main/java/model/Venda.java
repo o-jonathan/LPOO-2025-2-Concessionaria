@@ -6,6 +6,7 @@ package model;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import javax.persistence.*;
 
 /**
@@ -107,7 +108,8 @@ public class Venda implements Serializable{
 
     @Override
     public String toString() {
-        return "Venda: { veiculo"+veiculo.getPlaca()+", cliente: "+cliente.getNome()+", vendedor: "+vendedor.getNome()+"}";
+        //return "Venda: { veiculo"+veiculo.getPlaca()+", cliente: "+cliente.getNome()+", vendedor: "+vendedor.getNome()+"}";
+        return dataVenda.format(DateTimeFormatter.ISO_DATE);
     }
 
     public int getId() {
@@ -118,5 +120,16 @@ public class Venda implements Serializable{
         this.id = id;
     }
     
+    public String exibirDados() {
+        String txt = "";
+        txt += "Data: " + dataVenda.format(DateTimeFormatter.ISO_DATE);
+        txt += "\nValor: R$" + valorVenda;
+        txt += "\nCliente: " + cliente.getNome();
+        txt += "\nVendedor: " + vendedor.getNome();
+        txt += "\nVeículo: " + veiculo.getPlaca();
+        txt += "\nContrato: " + formaContrato;
+        txt += "\nPagamento: " + formaPgto;
+        return txt;
+    }
     
 }

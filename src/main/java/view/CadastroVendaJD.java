@@ -52,6 +52,7 @@ public class CadastroVendaJD extends javax.swing.JDialog {
         loadVeiculos();
         
         txtDataVenda.setText(LocalDateTime.now().format(formatter)); // Preenche data atual
+        txtValor.setText(daoVeiculo.buscarPorPlaca(cmbVeiculo.getSelectedItem()+"").get().getValor() + "");
     }
     
     public void loadFormaPgto(){
