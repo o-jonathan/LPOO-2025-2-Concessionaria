@@ -50,9 +50,9 @@ public class CadastroVendaJD extends javax.swing.JDialog {
         loadClientes();
         loadVendedores();
         loadVeiculos();
+        loadValor();
         
         txtDataVenda.setText(LocalDateTime.now().format(formatter)); // Preenche data atual
-        txtValor.setText(daoVeiculo.buscarPorPlaca(cmbVeiculo.getSelectedItem()+"").get().getValor() + "");
     }
     
     public void loadFormaPgto(){
@@ -83,6 +83,10 @@ public class CadastroVendaJD extends javax.swing.JDialog {
         for(Veiculo obj: daoVeiculo.listaVeiculos()) {
             cmbVeiculo.addItem(obj);
         }
+    }
+    
+    public void loadValor() {
+        txtValor.setText(daoVeiculo.buscarPorPlaca(cmbVeiculo.getSelectedItem()+"").get().getValor() + "");
     }
 
     /**
@@ -124,6 +128,17 @@ public class CadastroVendaJD extends javax.swing.JDialog {
         lblFormaContrato.setText("Forma de Contrato:");
 
         lblFormaPagamento.setText("Forma de Pagamento:");
+
+        cmbVeiculo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbVeiculoItemStateChanged(evt);
+            }
+        });
+        cmbVeiculo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbVeiculoActionPerformed(evt);
+            }
+        });
 
         lblCliente.setText("Cliente:");
 
@@ -240,7 +255,8 @@ public class CadastroVendaJD extends javax.swing.JDialog {
         
         try {
             // 1 - instanciar o objeto do tipo Venda
-            venda = new Venda();
+            if (venda == null)
+                venda = new Venda();
             
             // 2 - setar os valores dos campos txt... para o objeto  venda
             venda.setDataVenda(LocalDateTime.parse(txtDataVenda.getText(), formatter));
@@ -265,6 +281,14 @@ public class CadastroVendaJD extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "Erro ao salvar venda: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnSalvarActionPerformed
+
+    private void cmbVeiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbVeiculoActionPerformed
+
+    }//GEN-LAST:event_cmbVeiculoActionPerformed
+
+    private void cmbVeiculoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbVeiculoItemStateChanged
+        loadValor();
+    }//GEN-LAST:event_cmbVeiculoItemStateChanged
 
     /**
      * @param args the command line arguments

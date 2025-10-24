@@ -220,7 +220,6 @@ public class ListaVendasJF extends javax.swing.JFrame {
             Venda obj_venda = (Venda)tblVendas.getModel().getValueAt(tblVendas.getSelectedRow(), 0); 
             CadastroVendaJD telaEdicao = new CadastroVendaJD(this, rootPaneCheckingEnabled);
             telaEdicao.setVenda(obj_venda);
-            
             telaEdicao.setVisible(true);
             
             try {

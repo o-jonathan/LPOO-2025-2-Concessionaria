@@ -28,9 +28,6 @@ public class CadastroVendedorJD extends javax.swing.JDialog {
     public CadastroVendedorJD(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        
-        
-        vendedor = new Vendedor();
     }
 
     /**
@@ -167,24 +164,35 @@ public class CadastroVendedorJD extends javax.swing.JDialog {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        
+        if (vendedor == null)
+            vendedor = new Vendedor();
 
         
         try{
+            double comissao = Double.parseDouble(txtComissao.getText());
+            if (comissao < 0 || comissao >= 100) {
+                JOptionPane.showMessageDialog(rootPane, "Valor de comissão inválido! Informe somente valores entre [0-100]%");
+            }
+            else {
+                this.vendedor.setComissao(comissao);
+            }
+            
             this.vendedor.setNome(txtNome.getText());
             this.vendedor.setCPF(txtCPF.getText());
             // sintaxe para conversão: LocalDate.parse(String com data, máscara)
             this.vendedor.setDataNascimento(LocalDate.parse(txtDtNascimento.getText(), formatter));
             this.vendedor.setTelefone(txtTelefone.getText());
             this.vendedor.setSalario(Double.parseDouble(txtSalario.getText()));
-            this.vendedor.setComissao(Double.parseDouble(txtComissao.getText()));
             
             this.dispose();
         } catch (DateTimeParseException e1){
+            vendedor = null;
             JOptionPane.showMessageDialog(rootPane, "Data inválida!! Informe data no formato dd-mm-yyyy\n"+e1);
         } catch (NumberFormatException e2){
+            vendedor = null;
             JOptionPane.showMessageDialog(rootPane, "Valores inválidos!! Em salário e comissão informe somente valores numéricos\n"+e2);
         } catch (Exception e3){
+            vendedor = null;
             JOptionPane.showMessageDialog(rootPane, "Ocorreu um erro inesperado: \n"+e3);
         } 
         
