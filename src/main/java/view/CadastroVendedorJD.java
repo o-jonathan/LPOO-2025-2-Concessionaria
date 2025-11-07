@@ -10,6 +10,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import javax.swing.JOptionPane;
 import model.Vendedor;
+import model.dao.Util;
 
 /**
  *
@@ -176,6 +177,13 @@ public class CadastroVendedorJD extends javax.swing.JDialog {
             }
             else {
                 this.vendedor.setComissao(comissao);
+            }
+            
+            String cpf = txtCPF.getText();
+            
+            if(!Util.validaCPF(cpf)) {
+                JOptionPane.showMessageDialog(rootPane, "CPF Inválido!");
+                return;
             }
             
             this.vendedor.setNome(txtNome.getText());

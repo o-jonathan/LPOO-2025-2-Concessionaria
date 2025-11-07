@@ -211,7 +211,7 @@ public class CadastroVeiculoJD extends javax.swing.JDialog {
                 return;
             }
             
-            if (placa.length() != 7) {
+            if (placa.length() != 7 || !placa.matches("^[A-Z]{3}[0-9][A-Z0-9][0-9]{2}$")) {
                 JOptionPane.showMessageDialog(rootPane, "Placa inválida! Padrão: ABC1234");
                 return;
             }

@@ -11,6 +11,7 @@ import java.time.format.DateTimeParseException;
 import javax.swing.JOptionPane;
 import model.Cliente;
 import model.Vendedor;
+import model.dao.Util;
 
 /**
  *
@@ -156,6 +157,13 @@ public class CadastroClienteJD extends javax.swing.JDialog {
         }
         
         try{
+            String cpf = txtCPF.getText();
+            
+            if(!Util.validaCPF(cpf)) {
+                JOptionPane.showMessageDialog(rootPane, "CPF Inválido!");
+                return;
+            }
+            
             this.cliente.setNome(txtNome.getText());
             this.cliente.setCPF(txtCPF.getText());
             // sintaxe para conversão: LocalDate.parse(String com data, máscara)

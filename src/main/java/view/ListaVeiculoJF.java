@@ -27,6 +27,8 @@ public class ListaVeiculoJF extends javax.swing.JFrame {
 
         dao = new VeiculoDAO();
         loadTabelaVeiculos();
+        
+        verificaDisponibilidade();
     }
 
     /**
@@ -49,20 +51,20 @@ public class ListaVeiculoJF extends javax.swing.JFrame {
 
         tblVeiculos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Placa", "Marca", "Modelo", "Ano Modelo"
+                "Placa", "Marca", "Modelo", "Ano Modelo", "Disponivel"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Boolean.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -147,6 +149,7 @@ public class ListaVeiculoJF extends javax.swing.JFrame {
         if (novoVeiculo != null) {
             try {
                 //JOptionPane.showMessageDialog(rootPane, novoVeiculo);
+                novoVeiculo.setDisponivel(true);
                 dao.persist(novoVeiculo);
                 loadTabelaVeiculos();
             } catch (Exception ex) {
@@ -257,11 +260,37 @@ public class ListaVeiculoJF extends javax.swing.JFrame {
                 obj.getPlaca(),
                 obj.getMarca(),
                 obj.getModelo(),
-                obj.getAnoModelo()
+                obj.getAnoModelo(),
+                obj.getDisponivel().booleanValue()
             };
             modelo.addRow(linha);
         }
 
+    }
+    
+    
+    public void verificaDisponibilidade() {
+        tblVeiculos.getModel().addTableModelListener(e -> {
+            int row = e.getFirstRow();
+            int col = e.getColumn();
+            
+            if (col == 4) {
+                String placa = (String) tblVeiculos.getValueAt(row, 0);
+                dao.buscarPorPlaca(placa).ifPresent(v -> {
+                    int op_edt = JOptionPane.showConfirmDialog(rootPane, "Tem certeza que deseja alterar a disponibilidade?");
+                    if (op_edt == JOptionPane.YES_OPTION) {
+                        Boolean disponivel = (Boolean) tblVeiculos.getValueAt(row, 4);
+                        
+                        v.setDisponivel(disponivel);
+                        try {
+                            dao.persist(v);
+                        } catch (Exception ex) {
+                            System.err.println("Erro ao alterar a disponibilidade do veiculo: " + v + "\nErro: " + ex);
+                        }
+                    }
+                });
+            }
+        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

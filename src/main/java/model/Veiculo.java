@@ -45,7 +45,19 @@ public class Veiculo implements Serializable {
     @Column(name = "vei_modelo")
     private Modelo modelo;
     
+    @Column(name = "vei_disponivel")
+    private Boolean disponivel;
+
+    public Boolean getDisponivel() {
+        return disponivel;
+    }
+
+    public void setDisponivel(Boolean disponivel) {
+        this.disponivel = disponivel;
+    }
+    
     public Veiculo() {
+        disponivel = true;
         vendas = new ArrayList<>();
     }
     
@@ -119,6 +131,7 @@ public class Veiculo implements Serializable {
         aux += "Modelo: "+modelo+"\n";
         aux += "Marca: "+marca+"\n";
         aux += "Valor: R$"+valor+"\n";
+        aux += disponivel ? "[DISPONIVEL]" : "[NÃO DISPONIVEL]";
 
         return aux;
     }
